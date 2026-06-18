@@ -51,6 +51,7 @@ export function HeroPipeline() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let w = 0, h = 0, raf = 0, running = true;
+    let energy = 0.6; // smoothed golden-node glow (low-pass filtered, no flicker)
 
     // bezier control points per lane (normalized)
     const lanes = LANES_X.map((sx) => ({
@@ -138,7 +139,7 @@ export function HeroPipeline() {
           pk.t += pk.speed;
           if (pk.t >= 1) {
             pk.t -= 1;
-            pulseRef.current = Math.min(pulseRef.current + 0.6, 1.6);
+            pulseRef.current = Math.min(pulseRef.current + 0.1, 0.7);
           }
         }
         const p = pointAt(pk.lane, pk.t);
@@ -164,18 +165,19 @@ export function HeroPipeline() {
         ctx!.fill();
       }
 
-      // golden node pulse
-      if (!reduced) pulseRef.current *= 0.94;
-      const breathe = reduced ? 0.4 : 0.4 + 0.18 * Math.sin(now / 700);
-      const energy = Math.min(pulseRef.current + breathe, 1.4);
+      // golden node pulse — low-pass filtered so it breathes, never flickers
+      if (!reduced) pulseRef.current *= 0.95;
+      const breathe = reduced ? 0.5 : 0.5 + 0.1 * Math.sin(now / 1100);
+      const target = breathe + pulseRef.current;
+      energy += (target - energy) * 0.06; // ease toward target, smoothing spikes
       const gx = X(GOLD_X), gy = Y(GOLD_Y);
-      const glow = ctx!.createRadialGradient(gx, gy, 0, gx, gy, h * 0.22);
-      glow.addColorStop(0, `rgba(69,200,255,${0.22 * energy})`);
-      glow.addColorStop(0.5, `rgba(99,102,241,${0.12 * energy})`);
+      const glow = ctx!.createRadialGradient(gx, gy, 0, gx, gy, h * 0.2);
+      glow.addColorStop(0, `rgba(69,200,255,${0.16 * energy})`);
+      glow.addColorStop(0.5, `rgba(99,102,241,${0.08 * energy})`);
       glow.addColorStop(1, "rgba(7,11,22,0)");
       ctx!.fillStyle = glow;
       ctx!.beginPath();
-      ctx!.arc(gx, gy, h * 0.22, 0, Math.PI * 2);
+      ctx!.arc(gx, gy, h * 0.2, 0, Math.PI * 2);
       ctx!.fill();
 
       if (!reduced) raf = requestAnimationFrame(frame);
@@ -222,7 +224,7 @@ export function HeroPipeline() {
 
       {/* golden record (bottom) */}
       <div className="pointer-events-none absolute inset-x-0 bottom-[6%] flex justify-center px-6">
-        <div className="w-full max-w-[260px] rounded-xl border border-current/40 bg-gradient-to-b from-shoal/95 to-deep/95 p-3.5 shadow-2xl backdrop-blur-sm">
+        <div className="w-full max-w-[260px] rounded-xl border border-current/40 bg-gradient-to-b from-shoal to-deep p-3.5 shadow-2xl">
           <div className="mb-2 flex items-center justify-between">
             <span className="font-mono text-[0.58rem] uppercase tracking-widest text-current">golden.record</span>
             <span className="inline-flex items-center gap-1 rounded-full border border-signal/40 bg-signal/10 px-1.5 py-0.5 font-mono text-[0.52rem] tracking-wider text-signal">
