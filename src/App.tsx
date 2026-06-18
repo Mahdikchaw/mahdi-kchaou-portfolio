@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Nav } from "./components/Nav";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { Hero } from "./components/Hero";
@@ -32,6 +34,8 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <Analytics />
+      <SpeedInsights />
     </>
   );
 }
