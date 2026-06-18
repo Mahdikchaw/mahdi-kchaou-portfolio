@@ -1,6 +1,6 @@
 import { Mail, MapPin, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { profile } from "@/data/profile";
-import { LinkedInIcon } from "./icons";
+import { LinkedInIcon, GitHubIcon } from "./icons";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 
@@ -53,6 +53,15 @@ export function Contact() {
                 className="inline-flex items-center gap-2 rounded-lg border border-line-bright bg-shoal/60 px-5 py-3 text-sm font-semibold text-foam transition-colors hover:border-ocean hover:text-current"
               >
                 <LinkedInIcon className="h-4 w-4" /> LinkedIn
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-line-bright bg-shoal/60 px-5 py-3 text-sm font-semibold text-foam transition-colors hover:border-ocean hover:text-current"
+              >
+                <GitHubIcon className="h-4 w-4" /> GitHub
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
             </div>

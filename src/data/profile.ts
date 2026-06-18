@@ -19,6 +19,8 @@ export const profile = {
   email: "mahdikchaou.de@gmail.com",
   phone: "+49 1573 6271152",
   linkedin: "https://www.linkedin.com/in/mahdi-kchaou/",
+  github: "https://github.com/Mahdikchaw",
+  repo: "https://github.com/Mahdikchaw/mahdi-kchaou-portfolio",
   cv: "/cv/Mahdi_Kchaou_CV.pdf",
   // role families he credibly fits — shown as range, not a gimmicky switcher
   openTo: ["Revenue Operations", "Sales Operations", "Data Analyst", "CRM / RevOps Analyst"],

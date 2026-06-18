@@ -31,6 +31,14 @@ export function Footer() {
           >
             linkedin
           </a>
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors hover:text-current"
+          >
+            github
+          </a>
         </nav>
       </div>
 
@@ -39,7 +47,14 @@ export function Footer() {
           <span>
             © {year} {profile.name}. Built with React, Tailwind & a single source of truth.
           </span>
-          <span>Designed & engineered in Nuremberg.</span>
+          <a
+            href={profile.repo}
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors hover:text-current"
+          >
+            view source ↗
+          </a>
         </div>
       </div>
     </footer>

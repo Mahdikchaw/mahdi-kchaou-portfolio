@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Download, Mail, ArrowDown, MapPin } from "lucide-react";
 import { profile } from "@/data/profile";
-import { LinkedInIcon } from "./icons";
+import { LinkedInIcon, GitHubIcon } from "./icons";
 import { ReconciliationFigure } from "./ReconciliationFigure";
 
 export function Hero() {
@@ -86,6 +86,15 @@ export function Hero() {
               className="inline-flex items-center gap-2 rounded-lg border border-line bg-transparent px-3.5 py-3 text-sm font-semibold text-mist transition-colors hover:border-ocean hover:text-current"
             >
               <LinkedInIcon className="h-4 w-4" />
+            </a>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub profile"
+              className="inline-flex items-center gap-2 rounded-lg border border-line bg-transparent px-3.5 py-3 text-sm font-semibold text-mist transition-colors hover:border-ocean hover:text-current"
+            >
+              <GitHubIcon className="h-4 w-4" />
             </a>
           </motion.div>
 
