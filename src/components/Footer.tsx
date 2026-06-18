@@ -1,4 +1,5 @@
 import { profile, sections } from "@/data/profile";
+import { GitHubIcon, LinkedInIcon } from "./icons";
 
 export function Footer() {
   const year = 2026;
@@ -17,29 +18,35 @@ export function Footer() {
           </p>
         </div>
 
-        <nav className="flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-mist" aria-label="Footer">
-          {sections.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className="transition-colors hover:text-current">
-              {s.label.toLowerCase()}
+        <div className="flex flex-col gap-5 sm:items-end">
+          <nav className="flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-mist" aria-label="Footer">
+            {sections.map((s) => (
+              <a key={s.id} href={`#${s.id}`} className="transition-colors hover:text-current">
+                {s.label.toLowerCase()}
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-2">
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub profile"
+              className="grid h-9 w-9 place-items-center rounded-lg border border-line text-mist transition-colors hover:border-ocean hover:text-current"
+            >
+              <GitHubIcon className="h-4 w-4" />
             </a>
-          ))}
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="transition-colors hover:text-current"
-          >
-            linkedin
-          </a>
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noreferrer"
-            className="transition-colors hover:text-current"
-          >
-            github
-          </a>
-        </nav>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn profile"
+              className="grid h-9 w-9 place-items-center rounded-lg border border-line text-mist transition-colors hover:border-ocean hover:text-current"
+            >
+              <LinkedInIcon className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
       </div>
 
       <div className="border-t border-line/60">

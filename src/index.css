@@ -2,29 +2,24 @@
 
 /* ============================================================================
    Mahdi Kchaou — personal site design tokens
-   Concept: "single source of truth" — scattered data resolving into clarity.
-   Palette: deep-ocean ink, ocean blue → indigo current, foam text.
+   Concept: "single source of truth" — chaos resolving into clarity.
+   Palette: deep-ocean ink ↔ light foam, ocean blue → indigo current.
+   Tokens map to runtime CSS variables so the theme can switch (dark / light).
    ========================================================================== */
 @theme {
-  /* surfaces */
-  --color-abyss: #070b16; /* page background — deep water */
-  --color-deep: #0b1322; /* section panel */
-  --color-shoal: #0f1a30; /* raised card */
-  --color-line: #1b2942; /* hairline borders */
-  --color-line-bright: #2a3c5e;
-
-  /* current — the two accents in a gradient relationship (his ocean + indigo) */
-  --color-ocean: #1e9df2;
-  --color-current: #45c8ff; /* bright crest */
-  --color-indigo: #6366f1;
-  --color-indigo-bright: #8e93f8;
-
-  /* text */
-  --color-foam: #e9f0fb; /* primary text */
-  --color-mist: #93a4c4; /* secondary text */
-  --color-mist-dim: #5a6a88; /* tertiary / captions */
-
-  --color-signal: #34e3b0; /* sparingly: positive data signal */
+  --color-abyss: var(--c-abyss);
+  --color-deep: var(--c-deep);
+  --color-shoal: var(--c-shoal);
+  --color-line: var(--c-line);
+  --color-line-bright: var(--c-line-bright);
+  --color-ocean: var(--c-ocean);
+  --color-current: var(--c-current);
+  --color-indigo: var(--c-indigo);
+  --color-indigo-bright: var(--c-indigo-bright);
+  --color-foam: var(--c-foam);
+  --color-mist: var(--c-mist);
+  --color-mist-dim: var(--c-mist-dim);
+  --color-signal: var(--c-signal);
 
   /* type — editorial serif display + engineered sans + mono "data" texture */
   --font-display: "Fraunces", ui-serif, Georgia, serif;
@@ -34,6 +29,43 @@
   /* motion */
   --animate-drift: drift 16s ease-in-out infinite;
   --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* DARK (default) — deep ocean */
+:root,
+[data-theme="dark"] {
+  --c-abyss: #070b16;
+  --c-deep: #0b1322;
+  --c-shoal: #0f1a30;
+  --c-line: #1b2942;
+  --c-line-bright: #2a3c5e;
+  --c-ocean: #1e9df2;
+  --c-current: #45c8ff;
+  --c-indigo: #6366f1;
+  --c-indigo-bright: #8e93f8;
+  --c-foam: #e9f0fb;
+  --c-mist: #93a4c4;
+  --c-mist-dim: #5a6a88;
+  --c-signal: #34e3b0;
+  color-scheme: dark;
+}
+
+/* LIGHT — bright foam, the same ocean/indigo but darkened for contrast */
+[data-theme="light"] {
+  --c-abyss: #f5f8fd;
+  --c-deep: #eaf1fb;
+  --c-shoal: #ffffff;
+  --c-line: #d9e3f2;
+  --c-line-bright: #c3d2e8;
+  --c-ocean: #1372cf;
+  --c-current: #0e8fdc;
+  --c-indigo: #5457e0;
+  --c-indigo-bright: #6366f1;
+  --c-foam: #0c1426;
+  --c-mist: #44546f;
+  --c-mist-dim: #6c7c98;
+  --c-signal: #0a9e76;
+  color-scheme: light;
 }
 
 @keyframes drift {
@@ -48,7 +80,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 4.75rem; /* clears the fixed nav on anchor jumps */
     -webkit-text-size-adjust: 100%;
   }
   body {
@@ -58,18 +90,17 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
   ::selection {
     background: color-mix(in oklab, var(--color-ocean) 35%, transparent);
     color: var(--color-foam);
   }
-  /* Visible keyboard focus everywhere */
   :focus-visible {
     outline: 2px solid var(--color-current);
     outline-offset: 3px;
     border-radius: 4px;
   }
-  /* Custom scrollbar — subtle, on-brand */
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: var(--color-abyss); }
   ::-webkit-scrollbar-thumb {
@@ -81,7 +112,6 @@
 }
 
 @layer components {
-  /* Mono eyebrow — encodes the CRM/data "field" vernacular */
   .eyebrow {
     font-family: var(--font-mono);
     font-size: 0.72rem;
@@ -89,7 +119,6 @@
     text-transform: uppercase;
     color: var(--color-current);
   }
-  /* the ocean→indigo source-of-truth gradient text */
   .grad-text {
     background: linear-gradient(105deg, var(--color-current) 0%, var(--color-ocean) 42%, var(--color-indigo-bright) 100%);
     -webkit-background-clip: text;

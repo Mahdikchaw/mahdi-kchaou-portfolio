@@ -6,12 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#070B16" />
 
+    <!-- Set theme before paint to avoid a flash. Defaults to dark. -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme") || "dark";
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+
     <title>Mahdi Kchaou — Revenue Operations &amp; Data</title>
     <meta
       name="description"
       content="Mahdi Kchaou — Revenue Operations &amp; Data practitioner. I turn messy CRM and pipeline data into a single source of truth with Salesforce, HubSpot, SQL and Power BI. Based in Nuremberg, Germany · EU work-authorized · open to remote."
     />
-    <link rel="canonical" href="https://mahdikchaou.vercel.app/" />
+    <link rel="canonical" href="https://mahdi-kchaou-portfolio.vercel.app/" />
 
     <!-- Open Graph / social -->
     <meta property="og:type" content="profile" />
@@ -20,8 +32,8 @@
       property="og:description"
       content="I turn messy CRM and pipeline data into a single source of truth. RevOps · Sales Ops · Data Analyst. Nuremberg, Germany · EU work-authorized."
     />
-    <meta property="og:url" content="https://mahdikchaou.vercel.app/" />
-    <meta property="og:image" content="https://mahdikchaou.vercel.app/og.png" />
+    <meta property="og:url" content="https://mahdi-kchaou-portfolio.vercel.app/" />
+    <meta property="og:image" content="https://mahdi-kchaou-portfolio.vercel.app/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Mahdi Kchaou — Revenue Operations &amp; Data" />
     <meta

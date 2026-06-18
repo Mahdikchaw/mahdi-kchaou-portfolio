@@ -3,7 +3,7 @@
 Personal portfolio for **Mahdi Kchaou**, Revenue Operations & Data practitioner.
 One coherent story: turning messy CRM and pipeline data into a single source of truth.
 
-**Live:** https://mahdikchaou.vercel.app (update once the production domain is set)
+**Live:** https://mahdi-kchaou-portfolio.vercel.app
 
 ## Stack
 

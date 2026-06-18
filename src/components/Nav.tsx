@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import { profile, sections } from "@/data/profile";
 import { cn } from "@/lib/utils";
+import { GitHubIcon, LinkedInIcon } from "./icons";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -62,15 +64,43 @@ export function Nav() {
           ))}
         </nav>
 
-        <a
-          href={profile.cv}
-          download
-          className="inline-flex items-center gap-2 rounded-md bg-foam px-3.5 py-2 text-sm font-semibold text-abyss transition-transform hover:-translate-y-0.5 sm:px-4"
-        >
-          <Download className="h-4 w-4" />
-          <span>CV</span>
-          <span className="hidden sm:inline">&nbsp;(PDF)</span>
-        </a>
+        <div className="flex items-center gap-2">
+          {/* social logos */}
+          <div className="hidden items-center gap-1.5 sm:flex">
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub profile"
+              className="grid h-9 w-9 place-items-center rounded-lg border border-line text-mist transition-colors hover:border-ocean hover:text-current"
+            >
+              <GitHubIcon className="h-4 w-4" />
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn profile"
+              className="grid h-9 w-9 place-items-center rounded-lg border border-line text-mist transition-colors hover:border-ocean hover:text-current"
+            >
+              <LinkedInIcon className="h-4 w-4" />
+            </a>
+          </div>
+
+          <ThemeToggle />
+
+          <span className="mx-1 hidden h-5 w-px bg-line sm:block" />
+
+          <a
+            href={profile.cv}
+            download
+            className="inline-flex items-center gap-2 rounded-lg bg-foam px-3.5 py-2 text-sm font-semibold text-abyss transition-transform hover:-translate-y-0.5 sm:px-4"
+          >
+            <Download className="h-4 w-4" />
+            <span>CV</span>
+            <span className="hidden sm:inline">&nbsp;(PDF)</span>
+          </a>
+        </div>
       </div>
     </header>
   );
