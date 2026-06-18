@@ -11,7 +11,7 @@ export function References() {
   return (
     <Section
       id="references"
-      index="04"
+      index="05"
       label="references"
       title="Two signed letters. Read them — don't take my word for it."
     >

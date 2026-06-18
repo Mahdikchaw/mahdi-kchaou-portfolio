@@ -3,10 +3,11 @@ import { profile } from "@/data/profile";
 import { LinkedInIcon, GitHubIcon } from "./icons";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
+import { Magnetic } from "./Magnetic";
 
 export function Contact() {
   return (
-    <Section id="contact" index="05" label="contact">
+    <Section id="contact" index="06" label="contact">
       <Reveal>
         <div className="panel relative overflow-hidden rounded-2xl p-8 sm:p-12">
           {/* ambient glow */}
@@ -39,13 +40,15 @@ export function Contact() {
 
             {/* CTAs */}
             <div className="mt-9 flex flex-wrap gap-3">
-              <a
-                href={`mailto:${profile.email}`}
-                className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-ocean to-indigo px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-ocean/20 transition-transform hover:-translate-y-0.5"
-              >
-                <Mail className="h-4 w-4" />
-                {profile.email}
-              </a>
+              <Magnetic>
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-ocean to-indigo px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-ocean/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ocean/40"
+                >
+                  <Mail className="h-4 w-4" />
+                  {profile.email}
+                </a>
+              </Magnetic>
               <a
                 href={profile.linkedin}
                 target="_blank"

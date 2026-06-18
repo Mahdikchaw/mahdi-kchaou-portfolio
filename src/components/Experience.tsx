@@ -34,7 +34,7 @@ export function Experience() {
                       <h3 className="font-display text-lg font-semibold text-foam">{e.org}</h3>
                       {e.current && (
                         <span className="inline-flex items-center gap-1.5 rounded-full border border-signal/30 bg-signal/10 px-2.5 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-signal">
-                          <span className="h-1.5 w-1.5 rounded-full bg-signal" /> current
+                          <span className="h-1.5 w-1.5 rounded-full bg-signal" /> latest
                         </span>
                       )}
                     </div>

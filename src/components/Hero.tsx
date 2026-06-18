@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Download, Mail, ArrowDown, MapPin } from "lucide-react";
 import { profile } from "@/data/profile";
 import { ReconciliationFigure } from "./ReconciliationFigure";
+import { Magnetic } from "./Magnetic";
 
 export function Hero() {
   const reduced = useReducedMotion();
@@ -62,17 +63,19 @@ export function Hero() {
 
           {/* CTAs */}
           <motion.div {...item(0.3)} className="mt-9 flex flex-wrap items-center gap-3">
-            <a
-              href={profile.cv}
-              download
-              className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-ocean to-indigo px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-ocean/20 transition-transform hover:-translate-y-0.5"
-            >
-              <Download className="h-4 w-4" />
-              Download CV
-            </a>
+            <Magnetic>
+              <a
+                href={profile.cv}
+                download
+                className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-ocean to-indigo px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-ocean/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ocean/40"
+              >
+                <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+                Download CV
+              </a>
+            </Magnetic>
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex items-center gap-2 rounded-lg border border-line-bright bg-shoal/60 px-5 py-3 text-sm font-semibold text-foam transition-colors hover:border-ocean hover:text-current"
+              className="inline-flex items-center gap-2 rounded-lg border border-line-bright bg-shoal/60 px-5 py-3 text-sm font-semibold text-foam transition-all duration-200 hover:-translate-y-0.5 hover:border-ocean hover:text-current"
             >
               <Mail className="h-4 w-4" />
               Email me

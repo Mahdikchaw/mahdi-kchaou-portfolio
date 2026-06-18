@@ -118,6 +118,45 @@ export const experiences: Experience[] = [
   },
 ];
 
+export type CaseStudy = {
+  tag: string;
+  title: string;
+  context: string;
+  approach: string[];
+  outcome: string;
+  stack: string[];
+};
+export const caseStudies: CaseStudy[] = [
+  {
+    tag: "NanoTemper · Revenue Operations",
+    title: "One source of truth for sales & marketing",
+    context:
+      "Sales and marketing worked from Salesforce records that had drifted — duplicates, missing fields, inconsistent naming — so the pipeline numbers couldn't be trusted.",
+    approach: [
+      "Set naming conventions and data standards, and ran routine validation to catch duplicates, gaps and mismatches.",
+      "Configured custom fields and built automated Flows across the lead-to-order process to cut manual entry.",
+      "Built pipeline, conversion and win-rate dashboards in Salesforce, Excel and Power BI for leadership.",
+    ],
+    outcome:
+      "Leadership reported from one trusted pipeline view, reps spent less time fixing records, and outreach ran on clean, validated lead data.",
+    stack: ["Salesforce", "HubSpot", "Power BI", "Excel"],
+  },
+  {
+    tag: "START Nuremberg · Operations",
+    title: "An operational backbone for 70 people",
+    context:
+      "A student-led tech initiative ran 20+ projects across ~70 volunteers with no central system to track who owned what.",
+    approach: [
+      "Designed a structured Notion database modelling projects, teams and members.",
+      "Automated onboarding with Notion Forms and Zapier so new members were set up without manual steps.",
+      "Trained 8 teammates to run and maintain the system themselves.",
+    ],
+    outcome:
+      "One place held the truth for projects and people, onboarding became self-serve, and the team could see status at a glance.",
+    stack: ["Notion", "Zapier", "Process design"],
+  },
+];
+
 export type SkillGroup = {
   key: string;
   label: string;
@@ -233,7 +272,8 @@ export const languages: Language[] = [
 export const sections = [
   { id: "about", index: "01", label: "About" },
   { id: "experience", index: "02", label: "Experience" },
-  { id: "skills", index: "03", label: "Skills" },
-  { id: "references", index: "04", label: "References" },
-  { id: "contact", index: "05", label: "Contact" },
+  { id: "work", index: "03", label: "Work" },
+  { id: "skills", index: "04", label: "Skills" },
+  { id: "references", index: "05", label: "References" },
+  { id: "contact", index: "06", label: "Contact" },
 ] as const;

@@ -6,7 +6,7 @@ export function Skills() {
   return (
     <Section
       id="skills"
-      index="03"
+      index="04"
       label="skills"
       title="The stack behind a single source of truth."
     >

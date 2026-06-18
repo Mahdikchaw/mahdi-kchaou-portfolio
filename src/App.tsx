@@ -1,8 +1,10 @@
 import { Nav } from "./components/Nav";
+import { ScrollProgress } from "./components/ScrollProgress";
 import { Hero } from "./components/Hero";
 import { Metrics } from "./components/Metrics";
 import { About } from "./components/About";
 import { Experience } from "./components/Experience";
+import { Work } from "./components/Work";
 import { Skills } from "./components/Skills";
 import { References } from "./components/References";
 import { Contact } from "./components/Contact";
@@ -17,12 +19,14 @@ export default function App() {
       >
         Skip to content
       </a>
+      <ScrollProgress />
       <Nav />
       <main id="main" tabIndex={-1}>
         <Hero />
         <Metrics />
         <About />
         <Experience />
+        <Work />
         <Skills />
         <References />
         <Contact />
