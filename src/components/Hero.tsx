@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Download, Mail, ArrowDown, MapPin } from "lucide-react";
 import { profile } from "@/data/profile";
-import { ReconciliationFigure } from "./ReconciliationFigure";
+import { HeroPipeline } from "./HeroPipeline";
 import { Magnetic } from "./Magnetic";
 
 export function Hero() {
@@ -100,15 +100,8 @@ export function Hero() {
           {...(reduced ? {} : { initial: { opacity: 0, scale: 0.97 }, animate: { opacity: 1, scale: 1 }, transition: { duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] } })}
           className="relative z-10 lg:mt-[5.5rem]"
         >
-          <div className="panel relative aspect-[5/4] w-full overflow-hidden rounded-2xl lg:aspect-[4/5]">
-            <ReconciliationFigure />
-            {/* figure framing — mono labels frame the animation as Mahdi's work */}
-            <figcaption className="pointer-events-none absolute left-4 top-4 z-20 font-mono text-[0.65rem] uppercase tracking-widest text-mist-dim">
-              fig.01 — record reconciliation
-            </figcaption>
-            <div className="pointer-events-none absolute bottom-4 left-4 z-20 font-mono text-[0.65rem] uppercase tracking-widest text-mist-dim">
-              3 conflicting records <span className="text-current">→ 1 golden record</span>
-            </div>
+          <div className="panel relative aspect-[4/5] w-full overflow-hidden rounded-2xl">
+            <HeroPipeline />
           </div>
         </motion.figure>
       </div>
