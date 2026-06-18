@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   Mahdi Kchaou — personal site design tokens
+   Concept: "single source of truth" — scattered data resolving into clarity.
+   Palette: deep-ocean ink, ocean blue → indigo current, foam text.
+   ========================================================================== */
+@theme {
+  /* surfaces */
+  --color-abyss: #070b16; /* page background — deep water */
+  --color-deep: #0b1322; /* section panel */
+  --color-shoal: #0f1a30; /* raised card */
+  --color-line: #1b2942; /* hairline borders */
+  --color-line-bright: #2a3c5e;
+
+  /* current — the two accents in a gradient relationship (his ocean + indigo) */
+  --color-ocean: #1e9df2;
+  --color-current: #45c8ff; /* bright crest */
+  --color-indigo: #6366f1;
+  --color-indigo-bright: #8e93f8;
+
+  /* text */
+  --color-foam: #e9f0fb; /* primary text */
+  --color-mist: #93a4c4; /* secondary text */
+  --color-mist-dim: #5a6a88; /* tertiary / captions */
+
+  --color-signal: #34e3b0; /* sparingly: positive data signal */
+
+  /* type — editorial serif display + engineered sans + mono "data" texture */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* motion */
+  --animate-drift: drift 16s ease-in-out infinite;
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-abyss);
+    color: var(--color-foam);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--color-ocean) 35%, transparent);
+    color: var(--color-foam);
+  }
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid var(--color-current);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  /* Custom scrollbar — subtle, on-brand */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-abyss); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line-bright);
+    border-radius: 99px;
+    border: 2px solid var(--color-abyss);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-ocean); }
+}
+
+@layer components {
+  /* Mono eyebrow — encodes the CRM/data "field" vernacular */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-current);
+  }
+  /* the ocean→indigo source-of-truth gradient text */
+  .grad-text {
+    background: linear-gradient(105deg, var(--color-current) 0%, var(--color-ocean) 42%, var(--color-indigo-bright) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .panel {
+    background: linear-gradient(180deg, color-mix(in oklab, var(--color-shoal) 92%, transparent), var(--color-deep));
+    border: 1px solid var(--color-line);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
