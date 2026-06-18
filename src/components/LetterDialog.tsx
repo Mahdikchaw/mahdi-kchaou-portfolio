@@ -21,6 +21,8 @@ export function LetterDialog({
     const prevFocus = document.activeElement as HTMLElement | null;
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    const root = document.getElementById("root");
+    root?.setAttribute("inert", "");
     closeRef.current?.focus();
 
     const onKey = (e: KeyboardEvent) => {
@@ -45,6 +47,7 @@ export function LetterDialog({
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
+      document.getElementById("root")?.removeAttribute("inert");
       prevFocus?.focus();
     };
   }, [reference, onClose]);
@@ -104,6 +107,7 @@ export function LetterDialog({
               <iframe
                 src={`${reference.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                 title={`Letter from ${reference.author}`}
+                tabIndex={-1}
                 className="hidden h-full w-full sm:block"
               />
               {/* mobile fallback */}

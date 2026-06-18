@@ -9,7 +9,7 @@ export function Work() {
       id="work"
       index="03"
       label="work"
-      title="Two times messy data became something a team could trust."
+      title="Two builds where messy data became something a team could trust."
     >
       <div className="space-y-4">
         {caseStudies.map((c, i) => (
@@ -18,10 +18,21 @@ export function Work() {
               {/* left: framing */}
               <div className="flex flex-col">
                 <p className="eyebrow mb-4">{c.tag}</p>
-                <h3 className="font-display text-2xl font-semibold leading-tight text-foam sm:text-[1.7rem]">
+                <h3 className="font-display text-2xl font-semibold leading-tight text-foam [text-wrap:balance] sm:text-[1.7rem]">
                   {c.title}
                 </h3>
-                <div className="mt-auto flex flex-wrap gap-2 pt-6">
+
+                {/* truthful stat strip */}
+                <dl className="mt-7 grid grid-cols-3 gap-3 border-y border-line py-5">
+                  {c.stats.map((s) => (
+                    <div key={s.label}>
+                      <dt className="font-display text-2xl font-bold tracking-tight text-foam">{s.value}</dt>
+                      <dd className="mt-1 font-mono text-[0.65rem] leading-tight text-mist-dim">{s.label}</dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <div className="mt-5 flex flex-wrap gap-2">
                   {c.stack.map((s) => (
                     <span
                       key={s}

@@ -65,7 +65,7 @@
   --c-foam: #0c1426;
   --c-mist: #44546f;
   --c-mist-dim: #5b6b87;
-  --c-signal: #07835f;
+  --c-signal: #076c4f;
   --glow-strength: 26%;
   color-scheme: light;
 }
@@ -91,9 +91,11 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    font-optical-sizing: auto;
     overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
   }
+  [inert] { pointer-events: none; }
   ::selection {
     background: color-mix(in oklab, var(--color-ocean) 35%, transparent);
     color: var(--color-foam);
@@ -130,6 +132,11 @@
   .panel {
     background: linear-gradient(180deg, color-mix(in oklab, var(--color-shoal) 92%, transparent), var(--color-deep));
     border: 1px solid var(--color-line);
+  }
+  /* AA-safe primary gradient button (white text clears 4.5:1 across all stops) */
+  .btn-primary {
+    background-image: linear-gradient(105deg, #0c63a6 0%, #2f54cf 55%, #4f46e5 100%);
+    color: #fff;
   }
   /* theme-aware ambient glows so the concept survives in light theme */
   .glow-ocean {

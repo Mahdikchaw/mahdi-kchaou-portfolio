@@ -23,7 +23,7 @@ async function capture(theme, device, width, height) {
   await page.waitForTimeout(3400);
   await page.screenshot({ path: `${OUT}/${theme}-${device}-hero.png` });
 
-  for (const id of ["about", "experience", "skills", "references", "contact"]) {
+  for (const id of ["about", "experience", "work", "skills", "references", "contact"]) {
     await page.evaluate((i) => document.getElementById(i)?.scrollIntoView({ block: "start" }), id);
     await page.waitForTimeout(900);
     await page.screenshot({ path: `${OUT}/${theme}-${device}-${id}.png` });

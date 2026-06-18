@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Download, Menu, X } from "lucide-react";
 import { profile, sections } from "@/data/profile";
 import { cn } from "@/lib/utils";
@@ -6,12 +6,14 @@ import { GitHubIcon, LinkedInIcon } from "./icons";
 import { ThemeToggle } from "./ThemeToggle";
 
 const iconBtn =
-  "grid h-10 w-10 place-items-center rounded-lg border border-line text-mist transition-colors hover:border-ocean hover:text-current md:h-9 md:w-9";
+  "grid h-11 w-11 place-items-center rounded-lg border border-line text-mist transition-colors hover:border-ocean hover:text-current md:h-9 md:w-9";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const sheetRef = useRef<HTMLElement>(null);
+  const burgerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -20,14 +22,29 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Active section = the one with the largest visible ratio; nothing near the top.
   useEffect(() => {
+    const ratios: Record<string, number> = {};
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
+          ratios[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0;
         });
+        if (window.scrollY < 300) {
+          setActive("");
+          return;
+        }
+        let best = "";
+        let max = 0;
+        for (const [id, r] of Object.entries(ratios)) {
+          if (r > max) {
+            max = r;
+            best = id;
+          }
+        }
+        if (best) setActive(best);
       },
-      { rootMargin: "-45% 0px -50% 0px" }
+      { threshold: [0, 0.15, 0.35, 0.6, 0.85], rootMargin: "-20% 0px -35% 0px" }
     );
     sections.forEach((s) => {
       const el = document.getElementById(s.id);
@@ -36,11 +53,39 @@ export function Nav() {
     return () => obs.disconnect();
   }, []);
 
+  // Mobile sheet: scroll-lock + focus move + trap + restore.
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    if (!menuOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const first = sheetRef.current?.querySelector<HTMLElement>("a, button");
+    first?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const f = sheetRef.current?.querySelectorAll<HTMLElement>("a[href], button");
+      if (!f || !f.length) return;
+      const list = [burgerRef.current!, ...Array.from(f)];
+      const firstEl = list[0];
+      const lastEl = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    };
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, []);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [menuOpen]);
 
   return (
     <header
@@ -66,6 +111,7 @@ export function Nav() {
             <a
               key={s.id}
               href={`#${s.id}`}
+              aria-current={active === s.id ? "true" : undefined}
               className={cn(
                 "relative rounded-md px-3 py-2 font-mono text-xs tracking-wide transition-colors",
                 active === s.id
@@ -79,7 +125,6 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-2">
-          {/* social logos */}
           <div className="hidden items-center gap-1.5 sm:flex">
             <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub profile" className={iconBtn}>
               <GitHubIcon className="h-4 w-4" />
@@ -103,12 +148,12 @@ export function Nav() {
             <span className="hidden sm:inline">&nbsp;(PDF)</span>
           </a>
 
-          {/* mobile menu toggle */}
           <button
+            ref={burgerRef}
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            className="grid h-10 w-10 place-items-center rounded-lg border border-line text-foam transition-colors hover:border-ocean md:hidden"
+            className="grid h-11 w-11 place-items-center rounded-lg border border-line text-foam transition-colors hover:border-ocean md:hidden"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -117,36 +162,44 @@ export function Nav() {
 
       {/* mobile sheet */}
       {menuOpen && (
-        <nav
-          className="border-t border-line bg-abyss/95 px-6 py-5 backdrop-blur-md md:hidden"
-          aria-label="Mobile"
-        >
-          <ul className="flex flex-col gap-1">
-            {sections.map((s) => (
-              <li key={s.id}>
-                <a
-                  href={`#${s.id}`}
-                  onClick={() => setMenuOpen(false)}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-3 font-mono text-sm tracking-wide transition-colors",
-                    active === s.id ? "bg-shoal/60 text-current" : "text-mist hover:text-foam"
-                  )}
-                >
-                  <span className="text-mist-dim">{s.index}</span>
-                  {s.label.toLowerCase()}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-4 flex items-center gap-2 border-t border-line pt-4">
-            <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub profile" className={iconBtn}>
-              <GitHubIcon className="h-4 w-4" />
-            </a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn profile" className={iconBtn}>
-              <LinkedInIcon className="h-4 w-4" />
-            </a>
-          </div>
-        </nav>
+        <>
+          <div
+            className="fixed inset-0 top-16 z-40 bg-abyss/60 md:hidden"
+            onClick={() => setMenuOpen(false)}
+            aria-hidden
+          />
+          <nav
+            ref={sheetRef}
+            className="relative z-50 border-t border-line bg-abyss/95 px-6 py-5 backdrop-blur-md md:hidden"
+            aria-label="Mobile"
+          >
+            <ul className="flex flex-col gap-1">
+              {sections.map((s) => (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
+                    onClick={() => setMenuOpen(false)}
+                    className={cn(
+                      "flex items-center gap-3 rounded-lg px-3 py-3 font-mono text-sm tracking-wide transition-colors",
+                      active === s.id ? "bg-shoal/60 text-current" : "text-mist hover:text-foam"
+                    )}
+                  >
+                    <span className="text-mist-dim">{s.index}</span>
+                    {s.label.toLowerCase()}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 flex items-center gap-2 border-t border-line pt-4">
+              <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub profile" className={iconBtn}>
+                <GitHubIcon className="h-4 w-4" />
+              </a>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn profile" className={iconBtn}>
+                <LinkedInIcon className="h-4 w-4" />
+              </a>
+            </div>
+          </nav>
+        </>
       )}
     </header>
   );

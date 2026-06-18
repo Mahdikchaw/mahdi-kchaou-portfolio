@@ -26,7 +26,7 @@ export function ThemeToggle() {
       onClick={() => setTheme(next)}
       aria-label={`Switch to ${next} theme`}
       title={`Switch to ${next} theme`}
-      className="grid h-10 w-10 place-items-center rounded-lg border border-line text-mist transition-colors hover:border-ocean hover:text-current md:h-9 md:w-9"
+      className="grid h-11 w-11 place-items-center rounded-lg border border-line text-mist transition-colors hover:border-ocean hover:text-current md:h-9 md:w-9"
     >
       {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </button>

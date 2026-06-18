@@ -34,7 +34,7 @@ export function About() {
               <ul className="space-y-5">
                 {education.map((e) => (
                   <li key={e.school}>
-                    <p className="font-display text-sm font-semibold text-foam">{e.degree}</p>
+                    <p className="font-sans text-sm font-semibold text-foam">{e.degree}</p>
                     <p className="mt-0.5 text-sm text-mist">{e.school}</p>
                     <p className="mt-1 font-mono text-xs text-mist-dim">{e.dates}</p>
                     {e.note && <p className="mt-1 font-mono text-xs text-signal">{e.note}</p>}

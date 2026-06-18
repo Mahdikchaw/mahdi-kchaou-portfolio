@@ -13,7 +13,7 @@ export function Contact() {
           {/* ambient glow */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-indigo/20 blur-3xl"
+            className="glow-ocean pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full blur-3xl"
           />
           <div className="relative">
             <p className="eyebrow mb-5">open to work</p>
@@ -43,7 +43,7 @@ export function Contact() {
               <Magnetic>
                 <a
                   href={`mailto:${profile.email}`}
-                  className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-ocean to-indigo px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-ocean/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ocean/40"
+                  className="btn-primary group inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold shadow-lg shadow-ocean/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-ocean/40"
                 >
                   <Mail className="h-4 w-4" />
                   {profile.email}

@@ -194,7 +194,7 @@ export function ReconciliationFigure() {
         <button
           onClick={run}
           aria-label="Replay reconciliation"
-          className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 rounded-md border border-current/40 bg-current/10 px-2.5 py-1.5 font-mono text-[0.66rem] uppercase tracking-wider text-current transition-colors hover:bg-current/20"
+          className="absolute bottom-3 right-3 z-30 inline-flex items-center gap-1.5 rounded-lg border border-current/40 bg-abyss/70 px-3 py-2 font-mono text-[0.66rem] uppercase tracking-wider text-current backdrop-blur-sm transition-colors hover:bg-current/15"
         >
           <RotateCcw className="h-3 w-3" /> replay
         </button>

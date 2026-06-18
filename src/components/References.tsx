@@ -15,15 +15,15 @@ export function References() {
       label="references"
       title="Two signed letters. Read them — don't take my word for it."
     >
-      <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {references.map((r, i) => (
-          <Reveal key={r.author} delay={i * 0.1}>
-            <figure className="panel flex flex-col rounded-xl p-7">
+          <Reveal key={r.author} delay={i * 0.1} className="h-full">
+            <figure className="panel flex h-full flex-col rounded-xl p-7">
               <Quote className="h-7 w-7 text-ocean/70" aria-hidden />
               <blockquote className="mb-6 mt-4 font-display text-lg font-medium leading-relaxed text-foam">
                 {r.quote}
               </blockquote>
-              <figcaption className="mt-6 border-t border-line pt-5">
+              <figcaption className="mt-auto border-t border-line pt-5">
                 <p className="font-semibold text-foam">{r.author}</p>
                 <p className="text-sm text-mist">{r.authorRole}</p>
                 <p className="font-mono text-xs text-mist-dim">

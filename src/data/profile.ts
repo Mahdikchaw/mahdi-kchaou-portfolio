@@ -121,6 +121,7 @@ export const experiences: Experience[] = [
 export type CaseStudy = {
   tag: string;
   title: string;
+  stats: { value: string; label: string }[];
   context: string;
   approach: string[];
   outcome: string;
@@ -130,6 +131,11 @@ export const caseStudies: CaseStudy[] = [
   {
     tag: "NanoTemper · Revenue Operations",
     title: "One source of truth for sales & marketing",
+    stats: [
+      { value: "1 yr", label: "data & CRM operations" },
+      { value: "2", label: "CRMs aligned · Salesforce + HubSpot" },
+      { value: "3", label: "reporting tools · SF · Excel · Power BI" },
+    ],
     context:
       "Sales and marketing worked from Salesforce records that had drifted — duplicates, missing fields, inconsistent naming — so the pipeline numbers couldn't be trusted.",
     approach: [
@@ -144,6 +150,11 @@ export const caseStudies: CaseStudy[] = [
   {
     tag: "START Nuremberg · Operations",
     title: "An operational backbone for 70 people",
+    stats: [
+      { value: "20+", label: "projects tracked" },
+      { value: "~70", label: "people coordinated" },
+      { value: "8", label: "teammates trained" },
+    ],
     context:
       "A student-led tech initiative ran 20+ projects across ~70 volunteers with no central system to track who owned what.",
     approach: [
