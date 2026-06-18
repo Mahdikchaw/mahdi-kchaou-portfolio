@@ -123,13 +123,14 @@ export function HeroPipeline() {
       // rails
       for (let l = 0; l < 3; l++) drawRail(l);
 
-      // transform bar glow
-      const tb = ctx!.createLinearGradient(0, Y(MERGE_Y - 0.04), 0, Y(MERGE_Y + 0.04));
-      tb.addColorStop(0, "rgba(69,200,255,0)");
-      tb.addColorStop(0.5, "rgba(69,200,255,0.07)");
-      tb.addColorStop(1, "rgba(69,200,255,0)");
-      ctx!.fillStyle = tb;
-      ctx!.fillRect(X(0.12), Y(MERGE_Y - 0.04), X(0.76), Y(0.08));
+      // transform zone — a soft, edgeless glow at the convergence point
+      const tz = ctx!.createRadialGradient(X(GOLD_X), Y(MERGE_Y), 0, X(GOLD_X), Y(MERGE_Y), w * 0.34);
+      tz.addColorStop(0, "rgba(69,200,255,0.06)");
+      tz.addColorStop(1, "rgba(7,11,22,0)");
+      ctx!.fillStyle = tz;
+      ctx!.beginPath();
+      ctx!.arc(X(GOLD_X), Y(MERGE_Y), w * 0.34, 0, Math.PI * 2);
+      ctx!.fill();
 
       // packets
       for (const pk of packets) {
