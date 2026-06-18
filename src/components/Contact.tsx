@@ -17,7 +17,7 @@ export function Contact() {
           <div className="relative">
             <p className="eyebrow mb-5">open to work</p>
             <h2 className="max-w-2xl font-display text-3xl font-semibold leading-tight tracking-tight text-foam sm:text-5xl">
-              Let's make your revenue data <span className="grad-text">tell the truth.</span>
+              Let's make your revenue data <span className="grad-text italic">worth trusting.</span>
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-mist">
               I'm looking for my next role in revenue & data operations — full-time

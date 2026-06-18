@@ -118,40 +118,45 @@ export const experiences: Experience[] = [
   },
 ];
 
-export type SkillGroup = { key: string; label: string; items: string[] };
+export type SkillGroup = {
+  key: string;
+  label: string;
+  proof: string;
+  core: string[];
+  items: string[];
+};
 export const skillGroups: SkillGroup[] = [
   {
     key: "crm",
     label: "CRM & RevOps",
+    proof: "Ran Salesforce as the single source of truth for sales & marketing at NanoTemper.",
+    core: ["Salesforce", "HubSpot"],
     items: [
-      "Salesforce (admin, custom fields, Flows)",
-      "HubSpot (workflows & automation)",
+      "Custom fields & Flows",
       "Pipeline management & forecasting",
       "Lead qualification & enrichment",
       "LinkedIn Sales Navigator",
-      "Single source of truth",
     ],
   },
   {
     key: "data",
     label: "Data & Analytics",
-    items: [
-      "SQL (retrieval, analysis, modeling)",
-      "Power BI (dashboards & reporting)",
-      "Excel (PivotTables, formulas, macros)",
-      "Python (working level)",
-      "KPI definition & revenue metrics",
-      "Data quality & validation",
-    ],
+    proof: "Turned messy pipeline data into dashboards leaders actually act on.",
+    core: ["SQL", "Power BI", "Excel"],
+    items: ["Python (working level)", "KPI & revenue metrics", "Data quality & validation"],
   },
   {
     key: "tools",
     label: "Tools & Automation",
-    items: ["Notion", "Zapier", "Jira & Confluence", "Google Workspace", "AI workflow tools"],
+    proof: "Automated onboarding and tracked 20+ projects end-to-end.",
+    core: ["Notion", "Zapier"],
+    items: ["Jira & Confluence", "Google Workspace", "AI workflow tools"],
   },
   {
     key: "wow",
     label: "Ways of working",
+    proof: "Coordinated cross-functional teams across Germany, Tunisia and the UK.",
+    core: [],
     items: [
       "Cross-functional, international collaboration",
       "Stakeholder communication & data storytelling",

@@ -48,7 +48,7 @@ export function Experience() {
 
                   <p className="mt-4 text-sm leading-relaxed text-mist">{e.blurb}</p>
 
-                  <ul className="mt-4 space-y-2.5">
+                  <ul className="mt-4 max-w-[68ch] space-y-2.5">
                     {e.bullets.map((b) => (
                       <li key={b.slice(0, 20)} className="flex gap-3 text-sm leading-relaxed text-foam/90">
                         <ArrowUpRight className="mt-0.5 h-4 w-4 shrink-0 text-ocean" />

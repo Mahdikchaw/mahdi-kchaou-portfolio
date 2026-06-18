@@ -75,7 +75,8 @@ export function LetterDialog({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.98 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="panel relative flex h-[88vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl shadow-2xl"
+            className="panel relative flex max-h-[88dvh] min-h-0 w-full max-w-3xl flex-col overflow-hidden rounded-2xl shadow-2xl"
+            style={{ height: "88dvh" }}
           >
             {/* header */}
             <div className="flex items-start justify-between gap-4 border-b border-line p-5">
@@ -85,7 +86,7 @@ export function LetterDialog({
                   {reference.author}
                   <span className="font-sans font-normal text-mist"> · {reference.org}</span>
                 </p>
-                <p className="font-mono text-xs text-mist-dim">{reference.context}</p>
+                <p className="mt-2 font-mono text-xs text-mist">{reference.context}</p>
               </div>
               <button
                 ref={closeRef}
@@ -98,18 +99,36 @@ export function LetterDialog({
             </div>
 
             {/* document */}
-            <div className="relative min-h-0 flex-1 bg-abyss">
+            <div className="relative min-h-0 flex-1 bg-deep">
+              {/* inline viewer (PDF chrome stripped) — desktop only, unreliable on mobile */}
               <iframe
-                src={`${reference.pdf}#view=FitH`}
+                src={`${reference.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                 title={`Letter from ${reference.author}`}
-                className="h-full w-full"
+                className="hidden h-full w-full sm:block"
               />
+              {/* mobile fallback */}
+              <div className="grid h-full place-items-center px-8 text-center sm:hidden">
+                <div>
+                  <p className="font-display text-lg font-semibold text-foam">Signed letter (PDF)</p>
+                  <p className="mt-2 text-sm text-mist">
+                    Open the original document to read and verify it.
+                  </p>
+                  <a
+                    href={reference.pdf}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-5 inline-flex items-center gap-2 rounded-lg bg-foam px-4 py-2.5 text-sm font-semibold text-abyss"
+                  >
+                    <ExternalLink className="h-4 w-4" /> Open the letter
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* actions */}
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line p-4">
               <span className="font-mono text-xs text-mist-dim">
-                signed original · verify the quote yourself
+                Signed original · {reference.org}
               </span>
               <div className="flex gap-2">
                 <a

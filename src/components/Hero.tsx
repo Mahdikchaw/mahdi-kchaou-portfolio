@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Download, Mail, ArrowDown, MapPin } from "lucide-react";
 import { profile } from "@/data/profile";
-import { LinkedInIcon, GitHubIcon } from "./icons";
 import { ReconciliationFigure } from "./ReconciliationFigure";
 
 export function Hero() {
@@ -19,8 +18,8 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden">
       {/* ambient depth: ocean glow + faint lattice */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-[-10%] h-[60vh] w-[80vw] -translate-x-1/2 rounded-full bg-ocean/10 blur-[120px]" />
-        <div className="absolute right-[-10%] bottom-[-20%] h-[50vh] w-[50vw] rounded-full bg-indigo/10 blur-[120px]" />
+        <div className="glow-ocean absolute left-1/2 top-[-10%] h-[60vh] w-[80vw] -translate-x-1/2 rounded-full blur-[120px]" />
+        <div className="glow-indigo absolute bottom-[-20%] right-[-10%] h-[50vh] w-[50vw] rounded-full blur-[120px]" />
         <div
           className="absolute inset-0 opacity-[0.6]"
           style={{
@@ -33,7 +32,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="mx-auto grid min-h-screen w-full max-w-6xl grid-cols-1 items-center gap-12 px-6 pb-20 pt-28 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:px-10 lg:pt-24">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-12 px-6 pb-20 pt-28 lg:min-h-screen lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:px-10 lg:pt-28">
         {/* ---- copy ---- */}
         <div className="relative z-10">
           <motion.p {...item(0)} className="eyebrow mb-6 flex items-center gap-3">
@@ -50,7 +49,7 @@ export function Hero() {
             </motion.span>
             <motion.span
               {...item(0.12)}
-              className="block text-[2rem] font-semibold leading-[1.06] text-foam [text-wrap:balance] sm:text-5xl lg:text-[4.1rem] lg:leading-[1.04]"
+              className="block text-[2rem] font-bold leading-[1.08] text-foam [text-wrap:balance] sm:text-5xl lg:text-[4.2rem] lg:leading-[1.03]"
             >
               {profile.thesisLead}{" "}
               <span className="grad-text italic">{profile.thesisHighlight}</span>
@@ -78,24 +77,6 @@ export function Hero() {
               <Mail className="h-4 w-4" />
               Email me
             </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn profile"
-              className="inline-flex items-center gap-2 rounded-lg border border-line bg-transparent px-3.5 py-3 text-sm font-semibold text-mist transition-colors hover:border-ocean hover:text-current"
-            >
-              <LinkedInIcon className="h-4 w-4" />
-            </a>
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub profile"
-              className="inline-flex items-center gap-2 rounded-lg border border-line bg-transparent px-3.5 py-3 text-sm font-semibold text-mist transition-colors hover:border-ocean hover:text-current"
-            >
-              <GitHubIcon className="h-4 w-4" />
-            </a>
           </motion.div>
 
           {/* meta row */}
@@ -114,9 +95,9 @@ export function Hero() {
         {/* ---- the signature figure ---- */}
         <motion.figure
           {...(reduced ? {} : { initial: { opacity: 0, scale: 0.97 }, animate: { opacity: 1, scale: 1 }, transition: { duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] } })}
-          className="relative z-10"
+          className="relative z-10 lg:mt-[5.5rem]"
         >
-          <div className="panel relative aspect-[4/5] w-full overflow-hidden rounded-2xl sm:aspect-[5/4] lg:aspect-[4/5]">
+          <div className="panel relative aspect-[5/4] w-full overflow-hidden rounded-2xl lg:aspect-[4/5]">
             <ReconciliationFigure />
             {/* figure framing — mono labels frame the animation as Mahdi's work */}
             <figcaption className="pointer-events-none absolute left-4 top-4 z-20 font-mono text-[0.65rem] uppercase tracking-widest text-mist-dim">

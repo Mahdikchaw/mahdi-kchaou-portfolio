@@ -1,19 +1,19 @@
-import { GraduationCap } from "lucide-react";
-import { about, education, languages } from "@/data/profile";
+import { GraduationCap, MapPin, ShieldCheck } from "lucide-react";
+import { about, education, languages, profile } from "@/data/profile";
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
 
 export function About() {
   return (
     <Section id="about" index="01" label="about">
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
         {/* narrative */}
         <Reveal>
-          <div className="space-y-6">
+          <div className="max-w-[60ch] space-y-6">
             <p className="font-display text-2xl font-medium leading-snug text-foam sm:text-[1.7rem]">
               When records are clean and the reporting is honest, teams stop
               arguing about the numbers and start{" "}
-              <span className="grad-text">using them.</span>
+              <span className="grad-text italic">using them.</span>
             </p>
             {about.paragraphs.map((p) => (
               <p key={p.slice(0, 24)} className="text-base leading-relaxed text-mist">
@@ -58,6 +58,21 @@ export function About() {
                     </span>
                   </li>
                 ))}
+              </ul>
+            </div>
+
+            {/* right now */}
+            <div className="panel rounded-xl p-6">
+              <h3 className="eyebrow mb-4 text-mist-dim">right now</h3>
+              <ul className="space-y-2.5 text-sm">
+                <li className="flex items-center gap-2.5 text-foam">
+                  <ShieldCheck className="h-4 w-4 shrink-0 text-signal" />
+                  {profile.workAuth}
+                </li>
+                <li className="flex items-center gap-2.5 text-foam">
+                  <MapPin className="h-4 w-4 shrink-0 text-ocean" />
+                  {profile.location} · remote across EU
+                </li>
               </ul>
             </div>
           </div>

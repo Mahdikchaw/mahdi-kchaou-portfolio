@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Check, AlertTriangle, RotateCcw } from "lucide-react";
 
 /* ============================================================================
@@ -58,10 +58,8 @@ type Phase = "chaos" | "merge" | "resolved";
 export function ReconciliationFigure() {
   const reduced = useReducedMotion();
   const wrapRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(wrapRef, { amount: 0.5 });
   const [phase, setPhase] = useState<Phase>(reduced ? "resolved" : "chaos");
   const timers = useRef<number[]>([]);
-  const hasRun = useRef(false);
 
   function clearTimers() {
     timers.current.forEach((t) => clearTimeout(t));
@@ -75,24 +73,29 @@ export function ReconciliationFigure() {
     }
     clearTimers();
     setPhase("chaos");
-    timers.current.push(window.setTimeout(() => setPhase("merge"), 1900));
-    timers.current.push(window.setTimeout(() => setPhase("resolved"), 2900));
+    timers.current.push(window.setTimeout(() => setPhase("merge"), 2000));
+    timers.current.push(window.setTimeout(() => setPhase("resolved"), 3500));
   }
 
-  // Run once when first scrolled into view.
+  // Play on mount (delayed so the chaos→order story is actually seen).
   useEffect(() => {
-    if (inView && !hasRun.current) {
-      hasRun.current = true;
-      run();
+    if (reduced) {
+      setPhase("resolved");
+      return;
     }
+    timers.current.push(window.setTimeout(run, 600));
     return clearTimers;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView]);
+  }, []);
 
   const merged = phase !== "chaos";
 
   return (
     <div ref={wrapRef} className="absolute inset-0 grid place-items-center px-6">
+      <p className="sr-only">
+        Animated diagram: three CRM records with conflicting and missing values
+        merge into one verified golden record — a single source of truth.
+      </p>
       {/* faint backplate grid */}
       <div
         aria-hidden
@@ -191,7 +194,7 @@ export function ReconciliationFigure() {
         <button
           onClick={run}
           aria-label="Replay reconciliation"
-          className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 rounded-md border border-line bg-abyss/60 px-2.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-wider text-mist-dim transition-colors hover:border-ocean hover:text-current"
+          className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 rounded-md border border-current/40 bg-current/10 px-2.5 py-1.5 font-mono text-[0.66rem] uppercase tracking-wider text-current transition-colors hover:bg-current/20"
         >
           <RotateCcw className="h-3 w-3" /> replay
         </button>

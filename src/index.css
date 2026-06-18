@@ -45,26 +45,28 @@
   --c-indigo-bright: #8e93f8;
   --c-foam: #e9f0fb;
   --c-mist: #93a4c4;
-  --c-mist-dim: #5a6a88;
+  --c-mist-dim: #8593b0;
   --c-signal: #34e3b0;
+  --glow-strength: 14%;
   color-scheme: dark;
 }
 
 /* LIGHT — bright foam, the same ocean/indigo but darkened for contrast */
 [data-theme="light"] {
-  --c-abyss: #f5f8fd;
-  --c-deep: #eaf1fb;
+  --c-abyss: #eef3fb;
+  --c-deep: #f3f7fd;
   --c-shoal: #ffffff;
-  --c-line: #d9e3f2;
-  --c-line-bright: #c3d2e8;
+  --c-line: #cdd9ec;
+  --c-line-bright: #b3c4de;
   --c-ocean: #1372cf;
-  --c-current: #0e8fdc;
+  --c-current: #0a6fb0;
   --c-indigo: #5457e0;
-  --c-indigo-bright: #6366f1;
+  --c-indigo-bright: #4f53d6;
   --c-foam: #0c1426;
   --c-mist: #44546f;
-  --c-mist-dim: #6c7c98;
-  --c-signal: #0a9e76;
+  --c-mist-dim: #5b6b87;
+  --c-signal: #07835f;
+  --glow-strength: 26%;
   color-scheme: light;
 }
 
@@ -114,8 +116,8 @@
 @layer components {
   .eyebrow {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--color-current);
   }
@@ -129,6 +131,18 @@
     background: linear-gradient(180deg, color-mix(in oklab, var(--color-shoal) 92%, transparent), var(--color-deep));
     border: 1px solid var(--color-line);
   }
+  /* theme-aware ambient glows so the concept survives in light theme */
+  .glow-ocean {
+    background: color-mix(in oklab, var(--color-ocean) var(--glow-strength), transparent);
+  }
+  .glow-indigo {
+    background: color-mix(in oklab, var(--color-indigo) var(--glow-strength), transparent);
+  }
+}
+
+/* give cards real lift in the light theme so they don't float */
+[data-theme="light"] .panel {
+  box-shadow: 0 1px 2px rgba(12, 20, 38, 0.05), 0 10px 28px -14px rgba(12, 20, 38, 0.14);
 }
 
 @media (prefers-reduced-motion: reduce) {
