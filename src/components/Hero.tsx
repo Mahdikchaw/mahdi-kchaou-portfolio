@@ -38,7 +38,7 @@ export function Hero() {
         <div className="relative z-10">
           <motion.p {...item(0)} className="eyebrow mb-6 flex items-center gap-3">
             <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-signal" />
-            available — graduating sep 2026
+            open to working student &amp; entry-level roles
           </motion.p>
 
           <h1 className="font-display tracking-tight">
@@ -57,7 +57,7 @@ export function Hero() {
             </motion.span>
           </h1>
 
-          <motion.p {...item(0.2)} className="mt-7 max-w-xl text-base leading-relaxed text-mist sm:text-lg">
+          <motion.p {...item(0.2)} className="mt-7 max-w-xl text-base leading-relaxed text-mist text-justify sm:text-lg">
             {profile.thesisSub}
           </motion.p>
 

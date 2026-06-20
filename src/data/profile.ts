@@ -7,12 +7,12 @@
 export const profile = {
   name: "Mahdi Kchaou",
   initials: "MK",
-  role: "Revenue Operations & Data",
+  role: "Data Management & Analytics",
   // hero thesis — his actual professional value proposition
   thesisLead: "I turn messy pipeline data into",
   thesisHighlight: "a single source of truth.",
   thesisSub:
-    "Revenue & data operations practitioner. I keep CRM and pipeline data clean, build the reports and automations that sales and marketing teams trust, and make the numbers tell the truth — in Salesforce, HubSpot, SQL and Power BI.",
+    "Data management specialist. I turn scattered CRM and ERP data into one clean, trusted source, defining data standards, structuring records, and building the models, reports and automations that teams actually rely on, with Excel, SQL and Power BI.",
   location: "Nuremberg, Germany",
   remote: "Open to on-site, hybrid & remote across the EU",
   workAuth: "Authorized to work in Germany / EU",
@@ -23,20 +23,20 @@ export const profile = {
   repo: "https://github.com/Mahdikchaw/mahdi-kchaou-portfolio",
   cv: "/cv/Mahdi_Kchaou_CV.pdf",
   // role families he credibly fits — shown as range, not a gimmicky switcher
-  openTo: ["Revenue Operations", "Sales Operations", "Data Analyst", "CRM / RevOps Analyst"],
+  openTo: ["Data Management", "Data Operations", "Data Analyst", "CRM / Data Analyst"],
 } as const;
 
 export const about = {
   paragraphs: [
-    "I'm an Information Systems master's student at FAU Erlangen-Nürnberg (graduating September 2026), currently a working student in Data & CRM Operations at NanoTemper Technologies in Munich.",
-    "My work sits where revenue meets data. I enforce data standards in Salesforce, build and test the automations that move a lead from first touch to closed order, and turn pipeline data into dashboards leaders actually act on. When records are clean and the reporting is honest, teams stop arguing about the numbers and start using them.",
+    "I'm an Information Systems master's student at FAU Erlangen-Nürnberg. Until June 2026 I worked as a working student in Data & CRM Operations at NanoTemper Technologies in Munich, and I'm now looking for my next role in data.",
+    "My work sits at the core of data management. I enforce data standards across CRM and ERP systems, build and test the automations that keep records consistent end to end, and turn raw operational data into dashboards leaders actually act on. When records are clean and the reporting is honest, teams stop arguing about the numbers and start using them.",
     "I work across four languages and three countries' worth of teams, and I care about the unglamorous discipline that makes operations dependable: naming conventions, validation checks, documentation, and a single place where the truth lives.",
   ],
 } as const;
 
 export type Metric = { value: string; unit?: string; label: string };
 export const metrics: Metric[] = [
-  { value: "2021", label: "building CRM, data & revenue operations since" },
+  { value: "2021", label: "structuring, governing & analyzing data since" },
   { value: "70", unit: "+", label: "people coordinated in one Notion source of truth at START Nuremberg" },
   { value: "20", unit: "+", label: "projects tracked, documented & automated end-to-end" },
   { value: "4", label: "working languages · Arabic · English · French · German" },
@@ -63,7 +63,7 @@ export const experiences: Experience[] = [
     end: "Jun 2026",
     current: true,
     blurb:
-      "Biophysical-instruments scale-up. I kept the revenue team's Salesforce trustworthy and turned its data into reporting leadership could rely on.",
+      "Biophysical-instruments scale-up. I kept the team's CRM data trustworthy and turned it into reporting leadership could rely on.",
     bullets: [
       "Maintained Salesforce records to a single source of truth — enforcing naming conventions and data standards across sales and marketing.",
       "Built and tested automated Salesforce Flows with conditional logic across multiple triggers, streamlining the lead-to-order process and cutting manual work.",
@@ -129,7 +129,7 @@ export type CaseStudy = {
 };
 export const caseStudies: CaseStudy[] = [
   {
-    tag: "NanoTemper · Revenue Operations",
+    tag: "NanoTemper · Data & CRM Operations",
     title: "One source of truth for sales & marketing",
     stats: [
       { value: "1 yr", label: "data & CRM operations" },
@@ -178,7 +178,7 @@ export type SkillGroup = {
 export const skillGroups: SkillGroup[] = [
   {
     key: "crm",
-    label: "CRM & RevOps",
+    label: "CRM & Data Ops",
     proof: "Ran Salesforce as the single source of truth for sales & marketing at NanoTemper.",
     core: ["Salesforce", "HubSpot"],
     items: [
@@ -193,7 +193,7 @@ export const skillGroups: SkillGroup[] = [
     label: "Data & Analytics",
     proof: "Turned messy pipeline data into dashboards leaders actually act on.",
     core: ["SQL", "Power BI", "Excel"],
-    items: ["Python (working level)", "KPI & revenue metrics", "Data quality & validation"],
+    items: ["Python (working level)", "KPI & business metrics", "Data quality & validation"],
   },
   {
     key: "tools",
@@ -262,7 +262,7 @@ export const education: EducationItem[] = [
   {
     school: "Friedrich-Alexander-Universität Erlangen-Nürnberg",
     degree: "M.Sc. International Information Systems",
-    dates: "In progress · graduating Sep 2026",
+    dates: "Currently enrolled",
   },
   {
     school: "North American Private University, Tunisia",

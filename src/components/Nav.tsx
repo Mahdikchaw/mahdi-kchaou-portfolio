@@ -96,13 +96,14 @@ export function Nav() {
           : "border-b border-transparent"
       )}
     >
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6 lg:px-10">
+      <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-6 lg:px-10">
         <a href="#top" className="group flex items-center gap-3" aria-label="Mahdi Kchaou — home">
-          <span className="grid h-9 w-9 place-items-center rounded-md border border-line-bright bg-shoal font-display text-sm font-bold text-foam transition-colors group-hover:border-ocean">
+          <span className="grid h-11 w-11 place-items-center rounded-md border border-line-bright bg-shoal font-display text-base font-bold text-foam transition-colors group-hover:border-ocean">
             {profile.initials}
           </span>
-          <span className="hidden font-mono text-xs tracking-wider text-mist sm:block">
-            mahdi&nbsp;kchaou<span className="text-mist-dim">/revops</span>
+          <span className="hidden font-mono text-sm leading-tight tracking-wider text-mist sm:flex sm:flex-col">
+            <span>Mahdi&nbsp;Kchaou</span>
+            <span className="text-mist-dim">Data&nbsp;Specialist</span>
           </span>
         </a>
 
@@ -113,13 +114,13 @@ export function Nav() {
               href={`#${s.id}`}
               aria-current={active === s.id ? "true" : undefined}
               className={cn(
-                "relative rounded-md px-3 py-2 font-mono text-xs tracking-wide transition-colors",
+                "relative rounded-md px-3 py-2 font-mono text-sm tracking-wide transition-colors",
                 active === s.id
                   ? "font-semibold text-current after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-px after:bg-current"
                   : "text-mist-dim hover:text-foam"
               )}
             >
-              {s.label.toLowerCase()}
+              {s.label}
             </a>
           ))}
         </nav>
@@ -164,7 +165,7 @@ export function Nav() {
       {menuOpen && (
         <>
           <div
-            className="fixed inset-0 top-16 z-40 bg-abyss/60 md:hidden"
+            className="fixed inset-0 top-20 z-40 bg-abyss/60 md:hidden"
             onClick={() => setMenuOpen(false)}
             aria-hidden
           />
@@ -185,7 +186,7 @@ export function Nav() {
                     )}
                   >
                     <span className="text-mist-dim">{s.index}</span>
-                    {s.label.toLowerCase()}
+                    {s.label}
                   </a>
                 </li>
               ))}

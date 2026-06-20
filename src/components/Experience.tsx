@@ -9,7 +9,7 @@ export function Experience() {
       id="experience"
       index="02"
       label="experience"
-      title="Five years keeping revenue data honest — across Germany, Tunisia and the UK."
+      title="Five years keeping operational data honest — across Germany, Tunisia and the UK."
     >
       <div className="relative">
         {/* the spine — a single "current" line down the timeline */}

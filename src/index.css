@@ -82,7 +82,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 4.75rem; /* clears the fixed nav on anchor jumps */
+    scroll-padding-top: 5.75rem; /* clears the fixed nav on anchor jumps */
     -webkit-text-size-adjust: 100%;
   }
   body {
