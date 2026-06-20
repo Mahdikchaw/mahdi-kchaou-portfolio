@@ -6,7 +6,6 @@ import { Hero } from "./components/Hero";
 import { Metrics } from "./components/Metrics";
 import { About } from "./components/About";
 import { Experience } from "./components/Experience";
-import { Work } from "./components/Work";
 import { Skills } from "./components/Skills";
 import { References } from "./components/References";
 import { Contact } from "./components/Contact";
@@ -28,7 +27,6 @@ export default function App() {
         <Metrics />
         <About />
         <Experience />
-        <Work />
         <Skills />
         <References />
         <Contact />

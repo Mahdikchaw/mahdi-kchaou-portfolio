@@ -23,7 +23,7 @@ export const profile = {
   repo: "https://github.com/Mahdikchaw/mahdi-kchaou-portfolio",
   cv: "/cv/Mahdi_Kchaou_CV.pdf",
   // role families he credibly fits — shown as range, not a gimmicky switcher
-  openTo: ["Data Management", "Data Operations", "Data Analyst", "CRM / Data Analyst"],
+  openTo: ["Data Management", "Data Governance", "Data Operations", "Data Analytics", "CRM & ERP Operations"],
 } as const;
 
 export const about = {
@@ -283,8 +283,7 @@ export const languages: Language[] = [
 export const sections = [
   { id: "about", index: "01", label: "About" },
   { id: "experience", index: "02", label: "Experience" },
-  { id: "work", index: "03", label: "Work" },
-  { id: "skills", index: "04", label: "Skills" },
-  { id: "references", index: "05", label: "References" },
-  { id: "contact", index: "06", label: "Contact" },
+  { id: "skills", index: "03", label: "Skills" },
+  { id: "references", index: "04", label: "References" },
+  { id: "contact", index: "05", label: "Contact" },
 ] as const;
