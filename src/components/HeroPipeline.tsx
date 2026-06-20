@@ -207,7 +207,7 @@ export function HeroPipeline() {
 
       {/* source labels (top) */}
       <div className="pointer-events-none absolute inset-x-0 top-[7%] flex items-start justify-between px-[12%] font-mono text-[0.6rem] uppercase tracking-wider text-mist-dim">
-        {["salesforce", "forms", "exports"].map((s) => (
+        {["crm", "erp", "exports"].map((s) => (
           <span key={s} className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#ff7484" }} />
             {s}
