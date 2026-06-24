@@ -43,7 +43,14 @@ export function Experience() {
                     </span>
                   </div>
 
-                  <p className="mt-1 text-sm font-medium text-current">{e.title}</p>
+                  <p className="mt-1 flex flex-wrap items-center gap-2 text-sm font-medium text-current">
+                    {e.title}
+                    {e.type && (
+                      <span className="rounded-full border border-line bg-abyss/60 px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-mist-dim">
+                        {e.type}
+                      </span>
+                    )}
+                  </p>
                   <p className="font-mono text-xs text-mist-dim">{e.location}</p>
 
                   <p className="mt-4 text-sm leading-relaxed text-mist">{e.blurb}</p>

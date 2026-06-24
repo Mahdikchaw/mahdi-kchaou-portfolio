@@ -45,6 +45,7 @@ export const metrics: Metric[] = [
 export type Experience = {
   org: string;
   title: string;
+  type?: string;
   location: string;
   start: string;
   end: string;
@@ -57,7 +58,7 @@ export type Experience = {
 export const experiences: Experience[] = [
   {
     org: "NanoTemper Technologies",
-    title: "Working Student — Data & CRM Operations",
+    title: "Working Student",
     location: "Munich, Germany",
     start: "Jun 2025",
     end: "Jun 2026",
@@ -73,7 +74,8 @@ export const experiences: Experience[] = [
   },
   {
     org: "International School of Business",
-    title: "Data & Outreach Operations Coordinator",
+    title: "Consultant",
+    type: "Contract",
     location: "Sfax, Tunisia",
     start: "Sep 2022",
     end: "May 2023",
@@ -88,7 +90,7 @@ export const experiences: Experience[] = [
   },
   {
     org: "Acteol — Access Group ERP",
-    title: "CRM Operations & Data Analyst Intern",
+    title: "Internship",
     location: "Tunisia · UK-facing SaaS",
     start: "Mar 2021",
     end: "Aug 2021",
